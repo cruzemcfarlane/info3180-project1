@@ -4,7 +4,6 @@ import os
 from werkzeug import secure_filename
 from flask_wtf.file import FileField
 import json
-import demjson
 from .forms import Profiler
 from db_insert import *
 from . import db, models
