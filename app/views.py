@@ -1,6 +1,7 @@
 from app import app
-from flask import render_template, request, redirect, url_for, flash, jsonify, session
+from flask import render_template, request, redirect, url_for, flash, jsonify, session, send_file
 import os
+from os import path
 from werkzeug import secure_filename
 from flask_wtf.file import FileField
 import json
@@ -15,10 +16,17 @@ import time
 def index():
   return render_template('index.html', title="Home")
 
-@app.route('/viewprofile')
+@app.route('/viewprofile', methods=['GET', 'POST'])
 def viewprofile():
-  a = models.Profile.query.get(1)
-  return render_template('profiler3.html', userid= str(a.userid), fname=str(a.fname), lname=str(a.lname), username=str(a.username), sex=str(a.sex), age=str(a.age), highscore=str(a.highscore), tdollar=str(a.tdollar), profile_add_on=str(a.profile_add_on), pic=os.path.join(os.path.abspath(os.path.dirname('imagez')),str(a.image)))
+  u = models.Profile.query.all()
+  return render_template("profiler2.html", title="View User GUI", u=u)
+  
+
+@app.route('/gui_profile/<idNo>', methods=['GET', 'POST'])
+def gui_profile(idNo):
+  a = models.Profile.query.get(idNo)
+  return render_template('profiler3.html', userid= str(a.userid), fname=str(a.fname), lname=str(a.lname), username=str(a.username), sex=str(a.sex), age=str(a.age), highscore=str(a.highscore), tdollar=str(a.tdollar), profile_add_on=str(a.profile_add_on), files=[f for f in os.listdir('app/static') if f==str(a.image)][0])
+
 
 #create new profile
 @app.route('/profile', methods=['POST', 'GET'])
@@ -26,8 +34,7 @@ def profile():
   form = Profiler()
   if form.validate()==True and request.method == 'POST':
     filename = secure_filename(form.image.data.filename)
-    form.image.data.save(os.path.join(os.path.abspath(os.path.dirname('imagez')),filename))
-    #form = Profilers(request.form)
+    form.image.data.save(os.path.join('app/static', filename))
     insert(form.fname.data, form.lname.data, form.username.data, form.sex.data, form.age.data, filename, 0, 0)
     
     flash('%s\'s login was successful' % form.username.data)
