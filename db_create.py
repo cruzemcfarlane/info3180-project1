@@ -1,5 +1,5 @@
 #!flask/bin/python
 from config import SQLALCHEMY_DATABASE_URI
-from app import db, models
+from . import db, models
 
 db.create_all()
