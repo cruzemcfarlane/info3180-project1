@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block head %}
+  <meta name="description" content="melonJS homepage" />
+  <meta name="keywords" content="melonJS, HTML5, javascript, game, engine, framework" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='space_invader/index.css') }}" title="style" />
+{% endblock %}
+
+{% block content %}
+    <div id="screen"></div>
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/lib/melonJS-2.1.0.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/lib/plugins/debug/debugPanel.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/js/game.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/js/resources.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/js/screens/play.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/js/enemy.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/js/laser.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/js/player.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='space_invader/js/enemy_manager.js') }}"></script>
+
+    <script type="text/javascript">
+        /* Bootstrap */
+        window.onReady(function onReady() {
+            game.onload();
+        });
+    </script>
+{% endblock %}

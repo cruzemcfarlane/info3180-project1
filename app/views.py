@@ -9,6 +9,7 @@ from .forms import Profiler
 from db_insert import *
 from . import db, models
 import time
+import pdb
 
 
 @app.route('/')
@@ -71,6 +72,34 @@ def profileView(userid):
                   'tdollar':u.tdollar,
                   'profile_add_on':u.profile_add_on,
                   'image':u.image
+                 })
+
+@app.route('/games', methods=['GET'])
+def games():
+  #pdb.set_trace()
+  return render_template('games.html', title='List of Games', id=id)
+  
+@app.route('/game/<int:id>', methods=['GET'])
+def game(id):
+  if id == 1:
+    return redirect(url_for('one'))
+  elif id == 2:
+    return redirect(url_for('two'))
+
+@app.route('/one')
+def one():
+  return render_template('boilerplate.html', title="Boiler Plate")
+
+@app.route('/two')
+def two():
+  return render_template('spaceinvader.html', title='Space Invader')
+
+@app.route('/highscores', methods=['POST'])
+def highscore():
+  u = models.Profile.query.filter_by(userid=userid).first_or_404()
+  
+  return jsonify({ 
+                  'highscore':u.highscore
                  })
 
 @app.after_request

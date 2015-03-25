@@ -48,6 +48,12 @@
     </style>
   </head>
   <body>
+    <a href="{{ url_for('index') }}">[Home]</a>
+    <a href="{{ url_for('profile') }}">[Sign-Up]</a>
+    <a href="{{ url_for('profiles') }}">[View Registered Users]</a>
+    <a href="{{ url_for('viewprofile') }}">[GUI User Profile]</a>
+    <a href="{{ url_for('games') }}">[Games]</a>
+    <hr>
     <div>
       <img id="picture" src="/static/{{ files }}" alt='Not Working'></img>
       <h1 class="data" id="name">{{ fname }} {{ lname }}</h1>

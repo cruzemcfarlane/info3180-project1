@@ -1,8 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Welcome Home</h1>
-<div id="red"></div>
-<div id="blue"></div>
-<div id="yellow"></div>
-<div id="green"></div>
+<div class="container">
+  <div class="jumbotron">
+    <h1>INFO3180 PROJECT</h1>
+  </div>
+</div>
+<hr>
+<h2>To see updates to database, you must break the cache!</h2>
+<hr>
+
+<div class="container-fluid">
+  <h1>Description</h1>     
+  <div class="row">
+    <div class="col-sm-6" style="background-color:lavender;">
+      <p>This project is to test our skills with a variety of web development tools</p>
+      <p> We used Flask, JQuery, Bootstrap, MelonJS, HTML, CSS, etc</p>
+    </div>
+    <div class="col-sm-6">
+      <iframe frameborder="10" height="400px" width="400px" src="https://www.youtube.com/embed/kt0g4dWxEBo?rel=0&autoplay=1">
+</iframe>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
+
+

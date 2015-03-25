@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head lang="en">
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
     <title>Welcome</title>
     {% endif %}
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='JQ.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    
+    {% block head %}
+    {% endblock %}
   </head>
-  <body>
-    <a href="{{ url_for('index') }}">[Home]</a>
-    <a href="{{ url_for('profile') }}">[Sign-Up]</a>
-    <a href="{{ url_for('profiles') }}">[View Registered Users]</a>
-    <a href="{{ url_for('viewprofile') }}">[GUI User Profile]</a>
-    <hr>
+  <body background="{{ url_for('static', filename='pattern.jpg') }}">
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">INFO3180-Project</a>
+        </div>
+       <div>
+         <ul class="nav navbar-nav">
+          <li><a href="{{ url_for('index') }}">HOME</a></li>
+          <li><a href="{{ url_for('profile') }}">SIGN-UP</a></li>
+          <li><a href="{{ url_for('profiles') }}">JSON USERS</a></li>
+          <li><a href="{{ url_for('viewprofile') }}">VIEW GUI USERS</a></li>
+          <li><a href="{{ url_for('games') }}">GAMES</a></li>
+          <li><a href="{{ url_for('highscore') }}">HIGHSCORE</a></li>
+        </ul>
+        </div>
+      </div>
+    </nav>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul>
@@ -25,6 +42,7 @@
       </ul>
     {% endif %}
   {% endwith %}
+  <br /><br /><br /><br />
   {% block content %}{% endblock %}
   </body>
 </html>
